@@ -1,9 +1,13 @@
 import React from 'react'
+import { Mutation } from 'react-apollo'
+import { STAR_REPOSITORY } from '../../graphql/mutations/starRepository'
+import { handleStarRepositoryMutation } from './lib/handleStarRepositoryMutation'
 
 import Link from '../../Link'
 import '../style.css'
 
 const RepositoryItem = ({
+  id,
   name,
   url,
   descriptionHTML,
@@ -19,9 +23,16 @@ const RepositoryItem = ({
       <h2>
         <Link href={url}>{name}</Link>
       </h2>
+      <div>
+        {!viewerHasStarred ? (
+        <Mutation mutation={STAR_REPOSITORY} variables={{ id }}>
+          {handleStarRepositoryMutation(stargazers)}
+        </Mutation>
+        ) : (
+          <span>{/* Here comes your removeStar mutation */}</span>
+        )}
 
-      <div className="RepositoryItem-title-action">
-        {stargazers.totalCount} Stars
+        {/* Here comes your updateSubscription mutation */}
       </div>
     </div>
 
