@@ -2,6 +2,7 @@
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
+import { onError } from 'apollo-link-error'
 
 // Create a configured HttpLink instance that our Apollo client will need
 const httpLink = new HttpLink({
@@ -9,6 +10,15 @@ const httpLink = new HttpLink({
   headers: {
     authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`
   },
+})
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    // Do something with a graphQL error
+  }
+  if (networkError) {
+    // Do something with a network error
+  }
 })
 
 // Create the cache that our Apollo client will need
