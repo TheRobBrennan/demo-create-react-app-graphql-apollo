@@ -1,7 +1,11 @@
 import React from 'react'
 
-export const handleCurrentUserQuery = () => {
+export const handleCurrentUserQuery = ({ data }) => {
+  const { viewer } = data
+
+  if (!viewer) return null
+
   return (
-    <div>My Profile</div> 
+    <div>{viewer.name} {viewer.login}</div> 
   )
 }
