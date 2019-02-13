@@ -1,19 +1,13 @@
 import React from 'react'
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 
-const GET_CURRENT_USER = gql`
-  {
-    viewer {
-      login
-      name
-    }
-  }
-`
+// GraphQL
+import { Query } from 'react-apollo'
+import { GET_CURRENT_USER } from '../graphql/queries/getCurrentUser'
+import { handleCurrentUserQuery } from './lib/handleCurrentUserQuery'
 
 const Profile = () => (
   <Query query={GET_CURRENT_USER}>
-    {() => <div>My Profile</div>}
+    {handleCurrentUserQuery}
   </Query>
 )
 
