@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Loading from '../../Loading'
+import RepositoryList from '../../Repository'
 
 export const handleCurrentUserQuery = ({ data, loading }) => {
   const { viewer } = data
@@ -11,6 +12,6 @@ export const handleCurrentUserQuery = ({ data, loading }) => {
   }
 
   return (
-    <div>{viewer.name} {viewer.login}</div> 
+    <RepositoryList repositories={viewer.repositories} />
   )
 }
