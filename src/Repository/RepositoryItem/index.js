@@ -8,6 +8,10 @@ import { handleUnstarRepositoryMutation } from './lib/handleUnstarRepositoryMuta
 import Link from '../../Link'
 import '../style.css'
 
+const updateAddStar = (client, mutationResult) => {
+  // PLACEHOLDER: This will eventually be used to update the local cache
+}
+
 const RepositoryItem = ({
   id,
   name,
@@ -27,7 +31,7 @@ const RepositoryItem = ({
       </h2>
       <div>
         {!viewerHasStarred ? (
-          <Mutation mutation={STAR_REPOSITORY} variables={{ id }}>
+          <Mutation mutation={STAR_REPOSITORY} variables={{ id }} update={updateAddStar}>
             {handleStarRepositoryMutation(stargazers)}
           </Mutation>
         ) : (
