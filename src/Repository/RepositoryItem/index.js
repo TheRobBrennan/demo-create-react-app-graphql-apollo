@@ -8,8 +8,8 @@ import { handleUnstarRepositoryMutation } from './lib/handleUnstarRepositoryMuta
 import Link from '../../Link'
 import '../style.css'
 
-const updateAddStar = (client, mutationResult) => {
-  // PLACEHOLDER: This will eventually be used to update the local cache
+const updateAddStar = (client, { data: { addStar: { starrable: { id }}}}) => {
+  // Notice how we replaced mutationResult with the shape defined in the STAR_REPOSITORY mutation
 }
 
 const RepositoryItem = ({
