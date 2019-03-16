@@ -7,6 +7,7 @@ import { updateAddStar } from './lib/updateAddStar'
 
 import { UNSTAR_REPOSITORY } from '../../graphql/mutations/unstarRepository'
 import { handleUnstarRepositoryMutation } from './lib/handleUnstarRepositoryMutation'
+import { updateRemoveStar } from './lib/updateRemoveStar'
 
 import Link from '../../Link'
 import '../style.css'
@@ -34,7 +35,7 @@ const RepositoryItem = ({
             {handleStarRepositoryMutation(stargazers)}
           </Mutation>
         ) : (
-          <Mutation mutation={UNSTAR_REPOSITORY} variables={{ id }}>
+          <Mutation mutation={UNSTAR_REPOSITORY} variables={{ id }} update={updateRemoveStar}>
             {handleUnstarRepositoryMutation(stargazers)}
           </Mutation>
         )}
