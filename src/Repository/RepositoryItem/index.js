@@ -22,9 +22,22 @@ const updateAddStar = (client, { data: { addStar: { starrable: { id }}}}) => {
     fragment: REPOSITORY_FRAGMENT,
   })
 
-  // Update count of stargazers of repository
+  // Update count of stargazers of repository incrementing the value
+  // contained within the shape of our repository fragment
+  const totalCount = repository.stargazers.totalCount + 1
 
-  // Write repository back to cache
+  // Write repository data back to cache
+  client.writeFragment({
+    id: `Repository:${id}`,
+    fragment: REPOSITORY_FRAGMENT,
+    data: {
+      ...repository,
+      stargazers: {
+        ...repository.stargazers,
+        totalCount,
+      }
+    }
+  })
 
 }
 
