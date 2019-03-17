@@ -9,11 +9,11 @@ export const handleCurrentUserQuery = ({ data, loading, error, fetchMore }) => {
 
   // Display a loading indicator if our query is pending
   const { viewer } = data
-  if (loading || !viewer) {
+  if (loading && !viewer) {
     return <Loading />
   }
 
   return (
-    <RepositoryList repositories={viewer.repositories} fetchMore={fetchMore} />
+    <RepositoryList loading={loading} repositories={viewer.repositories} fetchMore={fetchMore} />
   )
 }
