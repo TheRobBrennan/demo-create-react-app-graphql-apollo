@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 
 import RepositoryItem from '../RepositoryItem'
+import { updateQuery } from './lib/updateQuery'
+
 import '../style.css'
 
 const RepositoryList = ({ repositories, fetchMore }) => (
@@ -15,7 +17,8 @@ const RepositoryList = ({ repositories, fetchMore }) => (
       <button type='button' onClick={() => fetchMore({
         variables: {
           cursor: repositories.pageInfo.endCursor,
-        }
+        },
+        updateQuery,
       })}>
         More Repositories
       </button>
