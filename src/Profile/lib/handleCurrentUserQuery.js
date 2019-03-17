@@ -4,7 +4,7 @@ import Loading from '../../Loading'
 import RepositoryList from '../../Repository'
 import ErrorMessage from '../../Error'
 
-export const handleCurrentUserQuery = ({ data, loading, error }) => {
+export const handleCurrentUserQuery = ({ data, loading, error, fetchMore }) => {
   if (error) return <ErrorMessage error={error} />
 
   // Display a loading indicator if our query is pending
@@ -14,6 +14,6 @@ export const handleCurrentUserQuery = ({ data, loading, error }) => {
   }
 
   return (
-    <RepositoryList repositories={viewer.repositories} />
+    <RepositoryList repositories={viewer.repositories} fetchMore={fetchMore} />
   )
 }
